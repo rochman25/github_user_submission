@@ -1,5 +1,6 @@
 package com.example.githubusersubmission
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,5 +50,29 @@ class MainActivity : AppCompatActivity() {
         binding.rvUsers.layoutManager = LinearLayoutManager(this)
         val listUserAdapter = ListUserAdapter(listGithubUser)
         binding.rvUsers.adapter = listUserAdapter
+
+        listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: GithubUser) {
+                showSelectedUser(data)
+            }
+
+        })
+    }
+
+    private fun showSelectedUser(user: GithubUser){
+        val githubUser = GithubUser(
+            user.username,
+            user.name,
+            user.avatar,
+            user.company,
+            user.location,
+            user.repository,
+            user.follower,
+            user.following
+        )
+
+        val detailActivityIntent = Intent(this@MainActivity, DetailActivity::class.java)
+        detailActivityIntent.putExtra(DetailActivity.EXTRA_USER,githubUser)
+        startActivity(detailActivityIntent)
     }
 }
