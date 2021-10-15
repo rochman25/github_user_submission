@@ -23,9 +23,7 @@ class ListUserAdapter(private val listUser: ArrayList<GithubUser>) : RecyclerVie
         val (dataName, dataFollower, dataAvatar) = listUser[position]
         holder.binding.tvItemName.text = dataName
         holder.binding.tvItemFollower.text = dataFollower
-        if (dataAvatar != null) {
-            holder.binding.imgItemPhoto.setImageResource(dataAvatar)
-        }
+        holder.binding.imgItemPhoto.setImageResource(dataAvatar)
         holder.itemView.setOnClickListener{
             onItemClickCallback.onItemClicked(listUser[holder.adapterPosition])
         }

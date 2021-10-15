@@ -17,13 +17,12 @@
         android:layout_height="wrap_content"
         android:padding="8dp">
 
-        <ImageView
+        <com.example.githubusersubmission.CircleImageView
             android:id="@+id/img_item_photo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/circle"
             android:contentDescription="@string/avatar_description"
             android:outlineProvider="background"
             card_view:layout_constraintBottom_toBottomOf="parent"

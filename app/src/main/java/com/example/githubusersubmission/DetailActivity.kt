@@ -16,9 +16,12 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val actionBar = supportActionBar
+        actionBar!!.title = "Detail User"
+
         val user = intent.getParcelableExtra<GithubUser>(EXTRA_USER) as GithubUser
         binding.txtName.text = user.name
         binding.txtUsername.text = user.username
-        binding.imgPhoto.setImageResource(user.avatar!!)
+        binding.imgPhoto.setImageResource(user.avatar)
     }
 }
