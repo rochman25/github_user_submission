@@ -20,9 +20,9 @@ class ListUserAdapter(private val listUser: ArrayList<GithubUser>) : RecyclerVie
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (dataName, dataFollower, dataAvatar) = listUser[position]
+        val (dataUsername, dataName, dataAvatar) = listUser[position]
         holder.binding.tvItemName.text = dataName
-        holder.binding.tvItemFollower.text = dataFollower
+        holder.binding.tvItemFollower.text = dataUsername
         holder.binding.imgItemPhoto.setImageResource(dataAvatar)
         holder.itemView.setOnClickListener{
             onItemClickCallback.onItemClicked(listUser[holder.adapterPosition])

@@ -23,5 +23,10 @@ class DetailActivity : AppCompatActivity() {
         binding.txtName.text = user.name
         binding.txtUsername.text = user.username
         binding.imgPhoto.setImageResource(user.avatar)
+        binding.txtFollower.text = user.follower.toString()
+        binding.txtFollowing.text = user.follower.toString()
+        binding.txtRepository.text = user.follower.toString()
+        binding.txtLocation.text = user.location
+        binding.txtCompany.text = user.company
     }
 }

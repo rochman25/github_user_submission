@@ -4,6 +4,16 @@
     <string name="follower">Follower</string>
 
     <string name="avatar_description">Avatar Image of Github User </string>
+    <string name="username">username</string>
+    <string name="dummy_data">16</string>
+    <string name="following">following</string>
+    <string name="repositories">Repositories</string>
+    <string name="location">location</string>
+    <string name="company">company</string>
+    <string name="icon_people">icon_people</string>
+    <string name="briefcase_icon">briefcase_icon</string>
+    <string name="company_icon">company_icon</string>
+    <string name="location_icon">location_icon</string>
     <string-array name="username">
         <item>JakeWharton</item>
         <item>amitshekhariitbhu</item>
