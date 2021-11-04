@@ -1,7 +1,6 @@
 package com.example.githubusersubmission
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubusersubmission.databinding.ItemRowUserBinding
@@ -31,7 +30,7 @@ class ListUserAdapter(private val listUser: ArrayList<GithubUser>) : RecyclerVie
 
     override fun getItemCount(): Int = listUser.size
 
-    class ListViewHolder(var binding: ItemRowUserBinding) : RecyclerView.ViewHolder(binding.root) {}
+    class ListViewHolder(var binding: ItemRowUserBinding) : RecyclerView.ViewHolder(binding.root)
 
     interface OnItemClickCallback {
         fun onItemClicked(data: GithubUser)

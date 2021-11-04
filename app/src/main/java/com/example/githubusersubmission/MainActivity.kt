@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.githubusersubmission.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val actionBar = supportActionBar
-        actionBar!!.title = "Github User's"
+        actionBar?.title = "Github User's"
 
         binding.rvUsers.setHasFixedSize(true)
 
@@ -60,19 +59,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSelectedUser(user: GithubUser){
-        val githubUser = GithubUser(
-            user.username,
-            user.name,
-            user.avatar,
-            user.company,
-            user.location,
-            user.repository,
-            user.follower,
-            user.following
-        )
-
         val detailActivityIntent = Intent(this@MainActivity, DetailActivity::class.java)
-        detailActivityIntent.putExtra(DetailActivity.EXTRA_USER,githubUser)
+        detailActivityIntent.putExtra(DetailActivity.EXTRA_USER,user)
         startActivity(detailActivityIntent)
     }
 }
