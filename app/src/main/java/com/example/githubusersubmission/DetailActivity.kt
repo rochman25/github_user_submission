@@ -2,6 +2,7 @@ package com.example.githubusersubmission
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.example.githubusersubmission.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class DetailActivity : AppCompatActivity() {
         binding.apply {
             txtName.text = user.name
             txtUsername.text = user.username
-            imgPhoto.setImageResource(user.avatar)
+            Glide.with(applicationContext).load(user.avatar).circleCrop().into(imgPhoto)
             txtFollower.text = user.follower.toString()
             txtFollowing.text = user.follower.toString()
             txtRepository.text = user.follower.toString()

@@ -3,6 +3,7 @@ package com.example.githubusersubmission
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.githubusersubmission.databinding.ItemRowUserBinding
 
 class ListUserAdapter(private val listUser: ArrayList<GithubUser>) : RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
@@ -22,7 +23,7 @@ class ListUserAdapter(private val listUser: ArrayList<GithubUser>) : RecyclerVie
         val (dataUsername, dataName, dataAvatar) = listUser[position]
         holder.binding.tvItemName.text = dataName
         holder.binding.tvItemFollower.text = dataUsername
-        holder.binding.imgItemPhoto.setImageResource(dataAvatar)
+        Glide.with(holder.itemView.context).load(dataAvatar).circleCrop().into(holder.binding.imgItemPhoto)
         holder.itemView.setOnClickListener{
             onItemClickCallback.onItemClicked(listUser[holder.adapterPosition])
         }
