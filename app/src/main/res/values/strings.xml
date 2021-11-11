@@ -14,6 +14,7 @@
     <string name="briefcase_icon">briefcase_icon</string>
     <string name="company_icon">company_icon</string>
     <string name="location_icon">location_icon</string>
+    <string name="search">Masukkan username</string>
     <string-array name="username">
         <item>JakeWharton</item>
         <item>amitshekhariitbhu</item>
