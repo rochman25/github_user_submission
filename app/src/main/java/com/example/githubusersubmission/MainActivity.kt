@@ -53,25 +53,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private val listGithubUsers: ArrayList<GithubUser>
-        get() {
-            val dataUsername = resources.getStringArray(R.array.username)
-            val dataName = resources.getStringArray(R.array.name)
-            val dataLocation = resources.getStringArray(R.array.location)
-            val dataRepository = resources.getStringArray(R.array.repository)
-            val dataCompany = resources.getStringArray(R.array.company)
-            val dataFollower = resources.getStringArray(R.array.followers)
-            val dataFollowing = resources.getStringArray(R.array.following)
-            val dataPhoto = resources.obtainTypedArray(R.array.avatar)
-            val listUser = ArrayList<GithubUser>()
-            for(i in dataName.indices) {
-                val user = GithubUser(dataUsername[i], dataName[i], dataPhoto.getResourceId(i, -1), dataCompany[i],dataLocation[i], dataRepository[i].toInt(), dataFollower[i].toInt(), dataFollowing[i].toInt())
-                listUser.add(user)
-            }
-            dataPhoto.recycle()
-            return listUser
-        }
-
     private fun showRecyclerList() {
         binding.rvUsers.layoutManager = LinearLayoutManager(this)
         val listUserAdapter = ListUserAdapter(listGithubUser)
