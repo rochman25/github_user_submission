@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,9 +16,9 @@ class UsersViewModel: ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private fun searchUser() {
+    fun searchUser(username: String) {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().searchUser(USERNAME)
+        val client = ApiConfig.getApiService().searchUser(username)
         client.enqueue(object : Callback<ResponseGithubUsers>{
             override fun onResponse(
                 call: Call<ResponseGithubUsers>,
@@ -47,6 +48,5 @@ class UsersViewModel: ViewModel() {
 
     companion object{
         private const val TAG = "UserViewModel"
-        private const val USERNAME = "zero"
     }
 }

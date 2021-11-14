@@ -9,13 +9,15 @@ import android.view.Menu
 
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusersubmission.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private val listGithubUser = ArrayList<GithubUser>()
     private lateinit var binding: ActivityMainBinding
+    private lateinit var userViewModel: UsersViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +29,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvUsers.setHasFixedSize(true)
 
-        listGithubUser.addAll(listGithubUsers)
-        showRecyclerList()
+        binding.rvUsers.layoutManager = LinearLayoutManager(this)
+
+        userViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UsersViewModel::class.java)
+        userViewModel.githubUser.observe(this, { githubUser ->
+            setUsersList(githubUser)
+        })
 
     }
 
@@ -43,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         searchView.queryHint = resources.getString(R.string.search)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
+                userViewModel.searchUser(query)
                 Toast.makeText(this@MainActivity, query, Toast.LENGTH_SHORT).show()
                 return true
             }
@@ -53,16 +60,13 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun showRecyclerList() {
-        binding.rvUsers.layoutManager = LinearLayoutManager(this)
-        val listUserAdapter = ListUserAdapter(listGithubUser)
+    private fun setUsersList(listGithubUsers: List<GithubUser>){
+        val listUserAdapter = ListUserAdapter(listGithubUsers)
         binding.rvUsers.adapter = listUserAdapter
-
-        listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback{
+        listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
             override fun onItemClicked(data: GithubUser) {
                 showSelectedUser(data)
             }
-
         })
     }
 
