@@ -6,10 +6,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusersubmission.databinding.ActivityMainBinding
@@ -34,6 +33,10 @@ class MainActivity : AppCompatActivity() {
         userViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UsersViewModel::class.java)
         userViewModel.githubUser.observe(this, { githubUser ->
             setUsersList(githubUser)
+        })
+
+        userViewModel.isLoading.observe(this, {
+            showLoading(it)
         })
 
     }
@@ -67,11 +70,22 @@ class MainActivity : AppCompatActivity() {
                 showSelectedUser(data)
             }
         })
+
+        val emptyDataObserver = EmptyDataObserver(binding.rvUsers, findViewById(R.id.empty_data_parent))
+        listUserAdapter.registerAdapterDataObserver(emptyDataObserver)
     }
 
     private fun showSelectedUser(user: GithubUser){
         val detailActivityIntent = Intent(this@MainActivity, DetailActivity::class.java)
         detailActivityIntent.putExtra(DetailActivity.EXTRA_USER,user)
         startActivity(detailActivityIntent)
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if(isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
     }
 }
