@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:padding="8dp">
 
-        <com.example.githubusersubmission.CircleImageView
+        <com.example.githubusersubmission.ui.view.CircleImageView
             android:id="@+id/img_item_photo"
             android:layout_width="100dp"
             android:layout_height="100dp"

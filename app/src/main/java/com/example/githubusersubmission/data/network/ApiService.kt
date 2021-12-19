@@ -1,5 +1,6 @@
-package com.example.githubusersubmission
+package com.example.githubusersubmission.data.network
 
+import com.example.githubusersubmission.*
 import retrofit2.Call
 import retrofit2.http.*
 

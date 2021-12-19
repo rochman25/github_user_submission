@@ -1,9 +1,10 @@
-package com.example.githubusersubmission
+package com.example.githubusersubmission.ui.view
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewOutlineProvider
 import androidx.appcompat.widget.AppCompatImageView
+import com.example.githubusersubmission.R
 
 class CircleImageView : AppCompatImageView {
 

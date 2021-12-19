@@ -1,4 +1,4 @@
-package com.example.githubusersubmission
+package com.example.githubusersubmission.ui.view
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

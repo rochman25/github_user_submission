@@ -1,8 +1,9 @@
-package com.example.githubusersubmission
+package com.example.githubusersubmission.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import com.example.githubusersubmission.data.GithubUser
 import com.example.githubusersubmission.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {

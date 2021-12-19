@@ -1,4 +1,4 @@
-package com.example.githubusersubmission
+package com.example.githubusersubmission.ui
 
 import android.app.SearchManager
 import android.content.Context
@@ -11,7 +11,12 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.githubusersubmission.*
+import com.example.githubusersubmission.data.GithubUser
 import com.example.githubusersubmission.databinding.ActivityMainBinding
+import com.example.githubusersubmission.ui.adapter.ListUserAdapter
+import com.example.githubusersubmission.ui.view.EmptyDataObserver
+import com.example.githubusersubmission.ui.viewmodel.UsersViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +35,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvUsers.layoutManager = LinearLayoutManager(this)
 
-        userViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UsersViewModel::class.java)
+        userViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            UsersViewModel::class.java)
         userViewModel.githubUser.observe(this, { githubUser ->
             setUsersList(githubUser)
         })

@@ -1,4 +1,4 @@
-package com.example.githubusersubmission
+package com.example.githubusersubmission.data.network
 
 import com.google.gson.annotations.SerializedName
 

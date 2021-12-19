@@ -1,9 +1,10 @@
-package com.example.githubusersubmission
+package com.example.githubusersubmission.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.githubusersubmission.data.GithubUser
 import com.example.githubusersubmission.databinding.ItemRowUserBinding
 
 class ListUserAdapter(private val listUser: List<GithubUser>) : RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
