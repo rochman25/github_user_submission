@@ -5,6 +5,7 @@ import retrofit2.http.*
 
 interface ApiService {
     @GET("search/users")
+    @Headers("Authorization:token ${BuildConfig.PERSONAL_ACCESS_TOKEN}")
     fun searchUser(
         @Query("q") username: String
     ): Call<ResponseGithubUsers>
@@ -20,7 +21,7 @@ interface ApiService {
     ):Call<ResponseListFollowers>
 
     @GET("users/{username}/following")
-    fun getFollowing(
+    fun getFollowing(   
         @Path("username") username: String
     ):Call<ResponseListFollowing>
 
