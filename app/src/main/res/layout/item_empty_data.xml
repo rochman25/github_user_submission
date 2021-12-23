@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.422"
-        android:contentDescription="@string/empty_data"
+        android:contentDescription="@string/title_empty_state"
         android:src="@drawable/ic_empty_dataset" />
 
     <TextView
@@ -41,7 +41,7 @@
         android:id="@+id/sub_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/subtitle_empty"
+        android:text="@string/subtitle_empty_state"
         android:padding="5dp"
         android:fontFamily="monospace"
         android:gravity="center"

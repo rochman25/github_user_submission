@@ -18,4 +18,6 @@
     <string name="subtitle_empty">Try search with another keyword.</string>
     <string name="title_empty">Oops! data not found</string>
     <string name="empty_data">empty data</string>
+    <string name="subtitle_empty_state">Try search something.</string>
+    <string name="title_empty_state">Oops! Data still empty</string>
 </resources>
