@@ -18,6 +18,7 @@ import com.example.githubusersubmission.ui.adapter.ListUserAdapter
 import com.example.githubusersubmission.ui.view.EmptyDataObserver
 import com.example.githubusersubmission.ui.viewmodel.UsersViewModel
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val actionBar = supportActionBar
-        actionBar?.title = "Github User's"
+        actionBar?.title = "Github Users"
 
         binding.rvUsers.setHasFixedSize(true)
 
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             showLoading(it)
         })
 
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -56,12 +58,18 @@ class MainActivity : AppCompatActivity() {
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.queryHint = resources.getString(R.string.search)
+        searchView.setIconifiedByDefault(false)
+        searchView.isQueryRefinementEnabled = true
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 userViewModel.searchUser(query)
+
                 return true
             }
             override fun onQueryTextChange(newText: String): Boolean {
+                if(newText.isNotEmpty()){
+                    return true
+                }
                 return false
             }
         })
