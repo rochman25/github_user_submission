@@ -8,10 +8,14 @@
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/ic_baseline_work_outline_24.xml" value="0.164453125" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/ic_empty_dataset.xml" value="0.283984375" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/img.xml" value="0.3388888888888889" />
-        <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/activity_detail.xml" value="0.32303370786516855" />
+        <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/activity_detail.xml" value="0.3139784946236559" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/activity_main.xml" value="0.3283514492753623" />
+        <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/fragment_detail_profil.xml" value="0.150390625" />
+        <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/fragment_following.xml" value="0.150390625" />
+        <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/fragment_profil_follow.xml" value="0.13984375" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/item_empty_data.xml" value="0.271875" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/item_row_user.xml" value="0.3283514492753623" />
+        <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/layout_follow.xml" value="0.26331967213114754" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1" />
         <entry key="app/src/main/res/menu/option_menu.xml" value="0.1" />
       </map>

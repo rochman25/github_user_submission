@@ -28,7 +28,7 @@
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/title_empty"
+        android:text="@string/title_empty_state"
         android:padding="10dp"
         android:fontFamily="monospace"
         android:textStyle="bold"
