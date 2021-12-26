@@ -1,6 +1,7 @@
 package com.example.githubusersubmission.data.network
 
 import com.example.githubusersubmission.*
+import com.example.githubusersubmission.data.model.ResponseDetailUser
 import retrofit2.Call
 import retrofit2.http.*
 

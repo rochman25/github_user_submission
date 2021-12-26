@@ -2,20 +2,28 @@ package com.example.githubusersubmission.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toolbar
 import androidx.annotation.StringRes
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.githubusersubmission.R
 import com.example.githubusersubmission.data.GithubUser
 import com.example.githubusersubmission.databinding.ActivityDetailBinding
+import com.example.githubusersubmission.ui.adapter.ListUserAdapter
 import com.example.githubusersubmission.ui.adapter.SectionPagerAdapter
+import com.example.githubusersubmission.ui.view.EmptyDataObserver
+import com.example.githubusersubmission.ui.viewmodel.DetailViewModel
+import com.example.githubusersubmission.ui.viewmodel.UsersViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
+    private lateinit var detailViewModel: DetailViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -25,11 +33,6 @@ class DetailActivity : AppCompatActivity() {
         actionBar?.title = "Detail User"
 
         val user = intent.getParcelableExtra<GithubUser>(EXTRA_USER) as GithubUser
-        binding.apply {
-            txtName.text = user.name
-            txtUsername.text = user.username
-            Glide.with(applicationContext).load(user.avatar).circleCrop().into(imgPhoto)
-        }
 
         val sectionsPagerAdapter = SectionPagerAdapter(this)
         val viewPager: ViewPager2 = binding.viewPager
@@ -40,6 +43,36 @@ class DetailActivity : AppCompatActivity() {
         }.attach()
         supportActionBar?.elevation = 0f
 
+        detailViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            DetailViewModel::class.java)
+        detailViewModel.githubUser.observe(this, { githubUser ->
+            setDetail(githubUser)
+        })
+
+        detailViewModel.isLoading.observe(this, {
+            showLoading(it)
+        })
+
+        user.username?.let { detailViewModel.getUser(it) }
+
+    }
+
+    private fun setDetail(githubUser: GithubUser){
+        binding.apply {
+            txtUsername.text = githubUser.username
+            txtName.text = githubUser.name
+            txtFollower.text = githubUser.follower.toString()
+            txtFollowing.text = githubUser.following.toString()
+            Glide.with(applicationContext).load(githubUser.avatar).circleCrop().into(imgPhoto)
+        }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if(isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
     }
 
     companion object {

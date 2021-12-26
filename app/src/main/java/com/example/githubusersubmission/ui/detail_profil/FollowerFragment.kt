@@ -56,6 +56,11 @@ class FollowerFragment : Fragment() {
         val listUserAdapter = ListUserAdapter(listGithubUsers)
         binding.rvFollower.adapter = listUserAdapter
 
+        listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: GithubUser) {
+
+            }
+        })
 
         val emptyDataObserver = view?.let { EmptyDataObserver(binding.rvFollower, it.findViewById(R.id.empty_data_parent)) }
         emptyDataObserver?.let { listUserAdapter.registerAdapterDataObserver(it) }
