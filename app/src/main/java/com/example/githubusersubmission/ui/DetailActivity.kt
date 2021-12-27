@@ -63,6 +63,9 @@ class DetailActivity : AppCompatActivity() {
             txtName.text = githubUser.name
             txtFollower.text = githubUser.follower.toString()
             txtFollowing.text = githubUser.following.toString()
+            txtRepository.text = githubUser.repository.toString()
+            txtLocation.text = githubUser.location.toString()
+            txtCompany.text = githubUser.company.toString()
             Glide.with(applicationContext).load(githubUser.avatar).circleCrop().into(imgPhoto)
         }
     }
