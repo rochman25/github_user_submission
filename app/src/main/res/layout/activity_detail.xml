@@ -179,7 +179,7 @@
                 android:layout_gravity="bottom"
                 android:background="?attr/colorSurface"
                 app:tabMode="fixed"
-                app:tabTextColor="@android:color/black" />
+                />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
