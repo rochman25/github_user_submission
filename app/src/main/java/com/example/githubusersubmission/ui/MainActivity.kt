@@ -6,7 +6,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
@@ -30,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val actionBar = supportActionBar
-        actionBar?.title = "Github Users"
+        actionBar?.title = getString(R.string.github_users)
 
         binding.rvUsers.setHasFixedSize(true)
 
@@ -63,7 +65,6 @@ class MainActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 userViewModel.searchUser(query)
-
                 return true
             }
             override fun onQueryTextChange(newText: String): Boolean {
@@ -73,7 +74,16 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
         })
+
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.light_mode -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            R.id.dark_mode -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setUsersList(listGithubUsers: List<GithubUser>){

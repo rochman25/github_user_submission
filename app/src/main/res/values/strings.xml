@@ -16,4 +16,9 @@
     <string name="subtitle_empty_state">Try search something.</string>
     <string name="title_empty_state">Oops! Data still empty</string>
     <string name="detail_user">Detail User</string>
+    <string name="github_users">Github Users</string>
+    <string name="setting">Setting</string>
+    <string name="favorites">favorites</string>
+    <string name="light_mode">Light mode</string>
+    <string name="dark_mode">Dark Mode</string>
 </resources>

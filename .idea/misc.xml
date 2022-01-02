@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/circle.xml" value="0.3388888888888889" />
+        <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/ic_baseline_home_work_24.xml" value="0.1640625" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/ic_baseline_work_outline_24.xml" value="0.164453125" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/ic_empty_dataset.xml" value="0.283984375" />
@@ -17,6 +19,7 @@
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/item_empty_data.xml" value="0.271875" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/item_row_user.xml" value="0.3283514492753623" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/layout_follow.xml" value="0.26331967213114754" />
+        <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/menu/option_menu.xml" value="0.21597222222222223" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1" />
         <entry key="app/src/main/res/menu/option_menu.xml" value="0.1" />
       </map>
