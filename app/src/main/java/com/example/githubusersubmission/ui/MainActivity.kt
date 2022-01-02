@@ -11,15 +11,22 @@ import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 
 import androidx.appcompat.widget.SearchView
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusersubmission.*
 import com.example.githubusersubmission.data.GithubUser
 import com.example.githubusersubmission.databinding.ActivityMainBinding
+import com.example.githubusersubmission.helper.ViewModelFactory
 import com.example.githubusersubmission.ui.adapter.ListUserAdapter
 import com.example.githubusersubmission.ui.view.EmptyDataObserver
 import com.example.githubusersubmission.ui.viewmodel.UsersViewModel
+import com.example.githubusersubmission.utils.MainViewModel
+import com.example.githubusersubmission.utils.SettingPreference
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,7 +46,8 @@ class MainActivity : AppCompatActivity() {
         binding.rvUsers.layoutManager = LinearLayoutManager(this)
 
         userViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            UsersViewModel::class.java)
+            UsersViewModel::class.java
+        )
         userViewModel.githubUser.observe(this, { githubUser ->
             setUsersList(githubUser)
         })
@@ -48,6 +56,20 @@ class MainActivity : AppCompatActivity() {
             showLoading(it)
         })
 
+        val pref = SettingPreference.getInstance(dataStore)
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+            MainViewModel::class.java
+        )
+
+        mainViewModel.getThemeSettings().observe(this,
+            { isDarkModeActive: Boolean ->
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
+            }
+        )
 
     }
 
@@ -67,8 +89,9 @@ class MainActivity : AppCompatActivity() {
                 userViewModel.searchUser(query)
                 return true
             }
+
             override fun onQueryTextChange(newText: String): Boolean {
-                if(newText.isNotEmpty()){
+                if (newText.isNotEmpty()) {
                     return true
                 }
                 return false
@@ -79,14 +102,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.light_mode -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            R.id.dark_mode -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        val pref = SettingPreference.getInstance(dataStore)
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref)).get(
+            MainViewModel::class.java
+        )
+        when (item.itemId) {
+            R.id.light_mode -> mainViewModel.saveThemeSetting(false)
+            R.id.dark_mode -> mainViewModel.saveThemeSetting(true)
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setUsersList(listGithubUsers: List<GithubUser>){
+    private fun setUsersList(listGithubUsers: List<GithubUser>) {
         val listUserAdapter = ListUserAdapter(listGithubUsers)
         binding.rvUsers.adapter = listUserAdapter
         listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
@@ -95,18 +122,19 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val emptyDataObserver = EmptyDataObserver(binding.rvUsers, findViewById(R.id.empty_data_parent))
+        val emptyDataObserver =
+            EmptyDataObserver(binding.rvUsers, findViewById(R.id.empty_data_parent))
         listUserAdapter.registerAdapterDataObserver(emptyDataObserver)
     }
 
-    private fun showSelectedUser(user: GithubUser){
+    private fun showSelectedUser(user: GithubUser) {
         val detailActivityIntent = Intent(this@MainActivity, DetailActivity::class.java)
-        detailActivityIntent.putExtra(DetailActivity.EXTRA_USER,user)
+        detailActivityIntent.putExtra(DetailActivity.EXTRA_USER, user)
         startActivity(detailActivityIntent)
     }
 
     private fun showLoading(isLoading: Boolean) {
-        if(isLoading) {
+        if (isLoading) {
             binding.progressBar.visibility = View.VISIBLE
         } else {
             binding.progressBar.visibility = View.GONE
