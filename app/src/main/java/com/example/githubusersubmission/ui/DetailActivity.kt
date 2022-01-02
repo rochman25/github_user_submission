@@ -1,19 +1,31 @@
 package com.example.githubusersubmission.ui
 
+import android.content.Context
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.githubusersubmission.R
 import com.example.githubusersubmission.data.GithubUser
 import com.example.githubusersubmission.databinding.ActivityDetailBinding
+import com.example.githubusersubmission.helper.ViewModelFactory
 import com.example.githubusersubmission.ui.adapter.SectionPagerAdapter
 import com.example.githubusersubmission.ui.viewmodel.DetailViewModel
+import com.example.githubusersubmission.utils.MainViewModel
+import com.example.githubusersubmission.utils.SettingPreference
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class DetailActivity : AppCompatActivity() {
 
@@ -50,6 +62,37 @@ class DetailActivity : AppCompatActivity() {
 
         user.username?.let { detailViewModel.getUser(it) }
 
+        val pref = SettingPreference.getInstance(dataStore)
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref))[MainViewModel::class.java]
+
+        mainViewModel.getThemeSettings().observe(this,
+            { isDarkModeActive: Boolean ->
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
+            }
+        )
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.option_menu, menu)
+        menu?.findItem(R.id.search)?.isVisible = false
+        menu?.findItem(R.id.favorites)?.isVisible = false
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val pref = SettingPreference.getInstance(dataStore)
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref))[MainViewModel::class.java]
+        when (item.itemId) {
+            R.id.light_mode -> mainViewModel.saveThemeSetting(false)
+            R.id.dark_mode -> mainViewModel.saveThemeSetting(true)
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setDetail(githubUser: GithubUser){
