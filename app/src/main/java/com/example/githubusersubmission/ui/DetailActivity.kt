@@ -30,7 +30,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val actionBar = supportActionBar
-        actionBar?.title = "Detail User"
+        actionBar?.title = getString(R.string.detail_user)
 
         val user = intent.getParcelableExtra<GithubUser>(EXTRA_USER) as GithubUser
 

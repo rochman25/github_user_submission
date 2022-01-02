@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.githubusersubmission.ResponseGithubUsers
 import com.example.githubusersubmission.data.GithubUser
 import com.example.githubusersubmission.data.model.ResponseDetailUser
 import com.example.githubusersubmission.data.network.ApiConfig

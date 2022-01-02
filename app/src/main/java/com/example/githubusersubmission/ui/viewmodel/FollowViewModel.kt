@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.githubusersubmission.ItemsItem
+import com.example.githubusersubmission.data.model.ItemsItem
 import com.example.githubusersubmission.data.GithubUser
 import com.example.githubusersubmission.data.network.ApiConfig
 import retrofit2.Call

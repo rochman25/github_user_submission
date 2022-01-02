@@ -1,9 +1,12 @@
 package com.example.githubusersubmission.ui.adapter
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.githubusersubmission.R
 import com.example.githubusersubmission.data.GithubUser
 import com.example.githubusersubmission.databinding.ItemRowUserBinding
 
@@ -24,7 +27,12 @@ class ListUserAdapter(private val listUser: List<GithubUser>) : RecyclerView.Ada
         val (dataUsername, dataName, dataAvatar) = listUser[position]
         holder.binding.tvItemName.text = dataName
         holder.binding.tvItemFollower.text = dataUsername
-        Glide.with(holder.itemView.context).load(dataAvatar).circleCrop().into(holder.binding.imgItemPhoto)
+        Glide.with(holder.itemView.context)
+                .load(dataAvatar)
+                .circleCrop()
+                .placeholder(R.drawable.ic_baseline_account_circle_24)
+                .error(ColorDrawable(Color.RED))
+                .into(holder.binding.imgItemPhoto)
         holder.itemView.setOnClickListener{
             onItemClickCallback.onItemClicked(listUser[holder.adapterPosition])
         }

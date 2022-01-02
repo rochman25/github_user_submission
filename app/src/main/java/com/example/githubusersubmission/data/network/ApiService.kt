@@ -1,6 +1,8 @@
 package com.example.githubusersubmission.data.network
 
-import com.example.githubusersubmission.*
+import com.example.githubusersubmission.BuildConfig
+import com.example.githubusersubmission.data.model.ItemsItem
+import com.example.githubusersubmission.data.model.ResponseGithubUsers
 import com.example.githubusersubmission.data.model.ResponseDetailUser
 import retrofit2.Call
 import retrofit2.http.*
