@@ -1,16 +1,15 @@
 package com.example.githubusersubmission.ui.detail_profil
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusersubmission.R
 import com.example.githubusersubmission.data.GithubUser
 import com.example.githubusersubmission.databinding.FragmentFollowerBinding
-import com.example.githubusersubmission.databinding.FragmentFollowingBinding
 import com.example.githubusersubmission.ui.DetailActivity
 import com.example.githubusersubmission.ui.adapter.ListUserAdapter
 import com.example.githubusersubmission.ui.view.EmptyDataObserver

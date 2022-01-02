@@ -1,21 +1,17 @@
 package com.example.githubusersubmission.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toolbar
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.githubusersubmission.R
 import com.example.githubusersubmission.data.GithubUser
 import com.example.githubusersubmission.databinding.ActivityDetailBinding
-import com.example.githubusersubmission.ui.adapter.ListUserAdapter
 import com.example.githubusersubmission.ui.adapter.SectionPagerAdapter
-import com.example.githubusersubmission.ui.view.EmptyDataObserver
 import com.example.githubusersubmission.ui.viewmodel.DetailViewModel
-import com.example.githubusersubmission.ui.viewmodel.UsersViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
