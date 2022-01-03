@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -16,10 +17,12 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.githubusersubmission.R
 import com.example.githubusersubmission.data.GithubUser
+import com.example.githubusersubmission.database.FavoriteUser
 import com.example.githubusersubmission.databinding.ActivityDetailBinding
 import com.example.githubusersubmission.helper.ViewModelFactory
 import com.example.githubusersubmission.ui.adapter.SectionPagerAdapter
 import com.example.githubusersubmission.ui.viewmodel.DetailViewModel
+import com.example.githubusersubmission.ui.viewmodel.FavoriteUserAddDeleteViewModel
 import com.example.githubusersubmission.utils.MainViewModel
 import com.example.githubusersubmission.utils.SettingPreference
 import com.google.android.material.tabs.TabLayout
@@ -31,6 +34,8 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private lateinit var detailViewModel: DetailViewModel
+
+    private lateinit var favoriteUserAddDeleteViewModel: FavoriteUserAddDeleteViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +68,7 @@ class DetailActivity : AppCompatActivity() {
         user.username?.let { detailViewModel.getUser(it) }
 
         val pref = SettingPreference.getInstance(dataStore)
-        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref))[MainViewModel::class.java]
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(application, pref))[MainViewModel::class.java]
 
         mainViewModel.getThemeSettings().observe(this,
             { isDarkModeActive: Boolean ->
@@ -75,6 +80,13 @@ class DetailActivity : AppCompatActivity() {
             }
         )
 
+        favoriteUserAddDeleteViewModel = obtainViewModel(this)
+
+        binding.favBtn.setOnClickListener {
+            val favoriteUser = FavoriteUser(0, user.username, user.name, user.avatar)
+            favoriteUserAddDeleteViewModel.insert(favoriteUser)
+            showToast(getString(R.string.added_to_fav))
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -87,7 +99,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val pref = SettingPreference.getInstance(dataStore)
-        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref))[MainViewModel::class.java]
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(application, pref))[MainViewModel::class.java]
         when (item.itemId) {
             R.id.light_mode -> mainViewModel.saveThemeSetting(false)
             R.id.dark_mode -> mainViewModel.saveThemeSetting(true)
@@ -114,6 +126,16 @@ class DetailActivity : AppCompatActivity() {
         } else {
             binding.progressBar.visibility = View.GONE
         }
+    }
+
+    private fun obtainViewModel(activity: AppCompatActivity): FavoriteUserAddDeleteViewModel {
+        val pref = SettingPreference.getInstance(dataStore)
+        val factory = ViewModelFactory.getInstance(activity.application, pref)
+        return ViewModelProvider(activity, factory).get(FavoriteUserAddDeleteViewModel::class.java)
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     companion object {

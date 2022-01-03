@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         val pref = SettingPreference.getInstance(dataStore)
-        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref))[MainViewModel::class.java]
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(application, pref))[MainViewModel::class.java]
 
         mainViewModel.getThemeSettings().observe(this,
             { isDarkModeActive: Boolean ->
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val pref = SettingPreference.getInstance(dataStore)
-        val mainViewModel = ViewModelProvider(this, ViewModelFactory(pref))[MainViewModel::class.java]
+        val mainViewModel = ViewModelProvider(this, ViewModelFactory(application, pref))[MainViewModel::class.java]
         when (item.itemId) {
             R.id.light_mode -> mainViewModel.saveThemeSetting(false)
             R.id.dark_mode -> mainViewModel.saveThemeSetting(true)
