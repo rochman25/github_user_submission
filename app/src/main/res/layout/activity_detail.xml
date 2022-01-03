@@ -192,4 +192,13 @@
 
     </androidx.viewpager2.widget.ViewPager2>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_to_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_favorite_24"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/avatar_description"
+        android:layout_gravity="bottom|end"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
