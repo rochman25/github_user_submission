@@ -1,7 +1,6 @@
 package com.example.githubusersubmission.ui
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -135,7 +134,7 @@ class DetailActivity : AppCompatActivity() {
     private fun obtainViewModel(activity: AppCompatActivity): FavoriteUserAddDeleteViewModel {
         val pref = SettingPreference.getInstance(dataStore)
         val factory = ViewModelFactory.getInstance(activity.application, pref)
-        return ViewModelProvider(activity, factory).get(FavoriteUserAddDeleteViewModel::class.java)
+        return ViewModelProvider(activity, factory)[FavoriteUserAddDeleteViewModel::class.java]
     }
 
     private fun showToast(message: String) {

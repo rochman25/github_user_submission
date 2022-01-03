@@ -1,22 +1,17 @@
 package com.example.githubusersubmission.ui
 
 import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusersubmission.R
-import com.example.githubusersubmission.data.GithubUser
-import com.example.githubusersubmission.database.FavoriteUser
 import com.example.githubusersubmission.databinding.ActivityFavoritesBinding
 import com.example.githubusersubmission.helper.ViewModelFactory
 import com.example.githubusersubmission.ui.adapter.FavoriteUserAdapter
-import com.example.githubusersubmission.ui.adapter.ListUserAdapter
-import com.example.githubusersubmission.ui.view.EmptyDataObserver
 import com.example.githubusersubmission.ui.viewmodel.FavoriteUserViewModel
 import com.example.githubusersubmission.utils.SettingPreference
 
@@ -53,6 +48,6 @@ class FavoritesActivity : AppCompatActivity() {
     private fun obtainViewModel(activity: AppCompatActivity) : FavoriteUserViewModel {
         val pref = SettingPreference.getInstance(dataStore)
         val factory = ViewModelFactory.getInstance(activity.application, pref)
-        return ViewModelProvider(activity, factory).get(FavoriteUserViewModel::class.java)
+        return ViewModelProvider(activity, factory)[FavoriteUserViewModel::class.java]
     }
 }

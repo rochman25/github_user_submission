@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,7 +17,7 @@ import com.example.githubusersubmission.ui.DetailActivity
 
 class FavoriteUserAdapter: RecyclerView.Adapter<FavoriteUserAdapter.FavoriteUserHolder>() {
 
-    protected val listFavoriteUser = ArrayList<FavoriteUser>()
+    private val listFavoriteUser = ArrayList<FavoriteUser>()
 
     fun setListFavoriteUsers(listFavoriteUser: List<FavoriteUser>) {
         val diffCallback = FavoriteUserDiffCallback(this.listFavoriteUser, listFavoriteUser)

@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusersubmission.R
 import com.example.githubusersubmission.data.GithubUser
-import com.example.githubusersubmission.database.FavoriteUser
 import com.example.githubusersubmission.databinding.FragmentFollowerBinding
 import com.example.githubusersubmission.ui.DetailActivity
 import com.example.githubusersubmission.ui.adapter.ListUserAdapter
@@ -38,8 +37,7 @@ class FollowerFragment : Fragment() {
 
         binding.rvFollower.layoutManager = LinearLayoutManager(context)
 
-        followViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            FollowViewModel::class.java)
+        followViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[FollowViewModel::class.java]
         followViewModel.githubUser.observe(viewLifecycleOwner, { githubUser ->
             setFollowerList(githubUser)
         })
