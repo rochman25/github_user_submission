@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusersubmission.R
 import com.example.githubusersubmission.data.GithubUser
+import com.example.githubusersubmission.database.FavoriteUser
 import com.example.githubusersubmission.databinding.FragmentFollowingBinding
 import com.example.githubusersubmission.ui.DetailActivity
 import com.example.githubusersubmission.ui.adapter.ListUserAdapter

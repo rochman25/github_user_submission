@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusersubmission.*
 import com.example.githubusersubmission.data.GithubUser
+import com.example.githubusersubmission.database.FavoriteUser
 import com.example.githubusersubmission.databinding.ActivityMainBinding
 import com.example.githubusersubmission.helper.ViewModelFactory
 import com.example.githubusersubmission.ui.adapter.ListUserAdapter
@@ -103,6 +104,9 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.light_mode -> mainViewModel.saveThemeSetting(false)
             R.id.dark_mode -> mainViewModel.saveThemeSetting(true)
+            R.id.favorites -> {
+                startActivity(Intent(this, FavoritesActivity::class.java))
+            }
         }
         return super.onOptionsItemSelected(item)
     }

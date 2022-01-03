@@ -1,6 +1,7 @@
 package com.example.githubusersubmission.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -83,8 +84,11 @@ class DetailActivity : AppCompatActivity() {
         favoriteUserAddDeleteViewModel = obtainViewModel(this)
 
         binding.favBtn.setOnClickListener {
-            val favoriteUser = FavoriteUser(0, user.username, user.name, user.avatar)
-            favoriteUserAddDeleteViewModel.insert(favoriteUser)
+            var favoriteUser : FavoriteUser? = null
+            detailViewModel.githubUser.observe(this, { githubUser ->
+                favoriteUser = FavoriteUser(0, githubUser.username, githubUser.name , githubUser.avatar)
+            })
+            favoriteUserAddDeleteViewModel.insert(favoriteUser!!)
             showToast(getString(R.string.added_to_fav))
         }
     }
