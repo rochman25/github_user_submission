@@ -24,4 +24,5 @@
     <string name="added_to_fav">User added to favorites</string>
     <string name="favorite_users">Favorite Users</string>
     <string name="remove_from_fav">User removed from favorites</string>
+    <string name="github_favorite_users">Github Favorite Users</string>
 </resources>

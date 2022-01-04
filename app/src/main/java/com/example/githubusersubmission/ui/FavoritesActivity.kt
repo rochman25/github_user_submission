@@ -2,6 +2,8 @@ package com.example.githubusersubmission.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -36,11 +38,11 @@ class FavoritesActivity : AppCompatActivity() {
             favoriteList ->
                 if(favoriteList != null) {
                     adapter.setListFavoriteUsers(favoriteList)
+                    adapter.notifyDataSetChanged()
                 }
         })
 
         adapter = FavoriteUserAdapter()
-
         binding.rvFavorites.layoutManager = LinearLayoutManager(this)
         binding.rvFavorites.setHasFixedSize(true)
         binding.rvFavorites.adapter = adapter

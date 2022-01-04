@@ -8,12 +8,14 @@
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.203125" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/ic_baseline_home_work_24.xml" value="0.1640625" />
+        <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.283984375" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/ic_baseline_work_outline_24.xml" value="0.164453125" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/ic_empty_dataset.xml" value="0.283984375" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/drawable/img.xml" value="0.3388888888888889" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/activity_detail.xml" value="0.3139784946236559" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/activity_favorites.xml" value="0.189453125" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/activity_main.xml" value="0.3283514492753623" />
+        <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/activity_splash.xml" value="0.156640625" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/fragment_detail_profil.xml" value="0.150390625" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/fragment_follower.xml" value="0.133984375" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/fragment_following.xml" value="0.150390625" />
@@ -22,6 +24,8 @@
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/item_row_user.xml" value="0.3283514492753623" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/layout/layout_follow.xml" value="0.26331967213114754" />
         <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/menu/option_menu.xml" value="0.21597222222222223" />
+        <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.283984375" />
+        <entry key="..\:/Users/zaenur/Documents/dev/learn/Android_Dicoding/github_user_submission/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.283984375" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1" />
         <entry key="app/src/main/res/menu/option_menu.xml" value="0.1" />
       </map>
