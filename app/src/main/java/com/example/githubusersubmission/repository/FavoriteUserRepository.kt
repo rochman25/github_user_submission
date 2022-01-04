@@ -31,4 +31,10 @@ class FavoriteUserRepository(application: Application) {
         }
     }
 
+    fun isExist(favoriteUser: FavoriteUser) {
+        executorService.execute {
+            mFavoriteDao.isExists()
+        }
+    }
+
 }

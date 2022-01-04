@@ -13,6 +13,10 @@ class FavoriteUserAddDeleteViewModel(application: Application): ViewModel() {
         mFavoriteUserRepository.insert(favoriteUser)
     }
 
+    fun isExist(favoriteUser: FavoriteUser) {
+        mFavoriteUserRepository.isExist(favoriteUser)
+    }
+
     fun delete(favoriteUser: FavoriteUser) {
         mFavoriteUserRepository.delete(favoriteUser)
     }
