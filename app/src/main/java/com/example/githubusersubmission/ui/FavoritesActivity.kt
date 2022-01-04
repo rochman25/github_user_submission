@@ -12,6 +12,7 @@ import com.example.githubusersubmission.R
 import com.example.githubusersubmission.databinding.ActivityFavoritesBinding
 import com.example.githubusersubmission.helper.ViewModelFactory
 import com.example.githubusersubmission.ui.adapter.FavoriteUserAdapter
+import com.example.githubusersubmission.ui.view.EmptyDataObserver
 import com.example.githubusersubmission.ui.viewmodel.FavoriteUserViewModel
 import com.example.githubusersubmission.utils.SettingPreference
 
@@ -43,6 +44,10 @@ class FavoritesActivity : AppCompatActivity() {
         binding.rvFavorites.layoutManager = LinearLayoutManager(this)
         binding.rvFavorites.setHasFixedSize(true)
         binding.rvFavorites.adapter = adapter
+
+        val emptyDataObserver =
+            EmptyDataObserver(binding.rvFavorites, findViewById(R.id.empty_data_parent))
+        adapter.registerAdapterDataObserver(emptyDataObserver)
     }
 
     private fun obtainViewModel(activity: AppCompatActivity) : FavoriteUserViewModel {

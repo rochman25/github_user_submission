@@ -1,7 +1,10 @@
 package com.example.githubusersubmission.ui
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -36,6 +39,8 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var detailViewModel: DetailViewModel
 
     private lateinit var favoriteUserAddDeleteViewModel: FavoriteUserAddDeleteViewModel
+    private var favoriteUser: FavoriteUser? = null
+    private var isDelete = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,9 +61,24 @@ class DetailActivity : AppCompatActivity() {
         }.attach()
         supportActionBar?.elevation = 0f
 
-        detailViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailViewModel::class.java]
+        detailViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        )[DetailViewModel::class.java]
+
         detailViewModel.githubUser.observe(this, { githubUser ->
             setDetail(githubUser)
+            favoriteUserAddDeleteViewModel.isExist(githubUser.username.toString())
+                .observe(this, { favoriteUserList ->
+                    isDelete = favoriteUserList != null
+                    if (favoriteUserList != null) {
+                        favoriteUser = FavoriteUser(favoriteUserList.id, favoriteUserList.username, favoriteUserList.name, favoriteUserList.avatar)
+                        binding.favBtn.imageTintList = ColorStateList.valueOf(Color.GREEN)
+                    }else{
+                        favoriteUser =
+                            FavoriteUser(0, githubUser.username, githubUser.name, githubUser.avatar)
+                    }
+                })
         })
 
         detailViewModel.isLoading.observe(this, {
@@ -68,7 +88,8 @@ class DetailActivity : AppCompatActivity() {
         user.username?.let { detailViewModel.getUser(it) }
 
         val pref = SettingPreference.getInstance(dataStore)
-        val mainViewModel = ViewModelProvider(this, ViewModelFactory(application, pref))[MainViewModel::class.java]
+        val mainViewModel =
+            ViewModelProvider(this, ViewModelFactory(application, pref))[MainViewModel::class.java]
 
         mainViewModel.getThemeSettings().observe(this,
             { isDarkModeActive: Boolean ->
@@ -83,12 +104,15 @@ class DetailActivity : AppCompatActivity() {
         favoriteUserAddDeleteViewModel = obtainViewModel(this)
 
         binding.favBtn.setOnClickListener {
-            var favoriteUser : FavoriteUser? = null
-            detailViewModel.githubUser.observe(this, { githubUser ->
-                favoriteUser = FavoriteUser(0, githubUser.username, githubUser.name , githubUser.avatar)
-            })
-            favoriteUserAddDeleteViewModel.insert(favoriteUser!!)
-            showToast(getString(R.string.added_to_fav))
+            if(isDelete){
+                favoriteUserAddDeleteViewModel.delete(favoriteUser as FavoriteUser)
+                showToast(getString(R.string.remove_from_fav))
+                binding.favBtn.imageTintList = ColorStateList.valueOf(Color.WHITE)
+            }else{
+                favoriteUserAddDeleteViewModel.insert(favoriteUser as FavoriteUser)
+                showToast(getString(R.string.added_to_fav))
+                binding.favBtn.imageTintList = ColorStateList.valueOf(Color.GREEN)
+            }
         }
     }
 
@@ -102,7 +126,8 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val pref = SettingPreference.getInstance(dataStore)
-        val mainViewModel = ViewModelProvider(this, ViewModelFactory(application, pref))[MainViewModel::class.java]
+        val mainViewModel =
+            ViewModelProvider(this, ViewModelFactory(application, pref))[MainViewModel::class.java]
         when (item.itemId) {
             R.id.light_mode -> mainViewModel.saveThemeSetting(false)
             R.id.dark_mode -> mainViewModel.saveThemeSetting(true)
@@ -110,7 +135,7 @@ class DetailActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setDetail(githubUser: GithubUser){
+    private fun setDetail(githubUser: GithubUser) {
         binding.apply {
             txtUsername.text = githubUser.username
             txtName.text = githubUser.name
@@ -124,7 +149,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        if(isLoading) {
+        if (isLoading) {
             binding.progressBar.visibility = View.VISIBLE
         } else {
             binding.progressBar.visibility = View.GONE
@@ -143,6 +168,7 @@ class DetailActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_USER = "extra_user"
+
         @StringRes
         private val TAB_TITLES = intArrayOf(
             R.string.follower,

@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.FavoritesActivity">
 
+    <include
+        android:id="@+id/empty_data_parent"
+        layout="@layout/item_empty_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="0dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_favorites"
         android:layout_width="0dp"

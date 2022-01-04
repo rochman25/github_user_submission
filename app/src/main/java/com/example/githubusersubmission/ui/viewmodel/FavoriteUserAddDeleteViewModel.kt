@@ -1,6 +1,7 @@
 package com.example.githubusersubmission.ui.viewmodel
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.githubusersubmission.database.FavoriteUser
 import com.example.githubusersubmission.repository.FavoriteUserRepository
@@ -13,9 +14,7 @@ class FavoriteUserAddDeleteViewModel(application: Application): ViewModel() {
         mFavoriteUserRepository.insert(favoriteUser)
     }
 
-    fun isExist(favoriteUser: FavoriteUser) {
-        mFavoriteUserRepository.isExist(favoriteUser)
-    }
+    fun isExist(username: String): LiveData<FavoriteUser> = mFavoriteUserRepository.isExist(username)
 
     fun delete(favoriteUser: FavoriteUser) {
         mFavoriteUserRepository.delete(favoriteUser)

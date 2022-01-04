@@ -31,10 +31,6 @@ class FavoriteUserRepository(application: Application) {
         }
     }
 
-    fun isExist() {
-        executorService.execute {
-            mFavoriteDao.isExists()
-        }
-    }
+    fun isExist(username: String): LiveData<FavoriteUser> = mFavoriteDao.isExists(username)
 
 }
