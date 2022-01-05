@@ -3,13 +3,12 @@ package com.example.githubusersubmission.ui
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-
 import androidx.appcompat.widget.SearchView
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -18,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubusersubmission.*
 import com.example.githubusersubmission.data.GithubUser
-import com.example.githubusersubmission.database.FavoriteUser
 import com.example.githubusersubmission.databinding.ActivityMainBinding
 import com.example.githubusersubmission.helper.ViewModelFactory
 import com.example.githubusersubmission.ui.adapter.ListUserAdapter
