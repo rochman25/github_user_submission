@@ -28,14 +28,18 @@ class ViewModelFactory(private val mApplication: Application, private val pref: 
 
     @Suppress("UNCHECKED_CAST")
     override fun <T: ViewModel> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            return MainViewModel(pref) as T
-        } else if(modelClass.isAssignableFrom(FavoriteUserViewModel::class.java)) {
-            return FavoriteUserViewModel(mApplication) as T
-        } else if(modelClass.isAssignableFrom(FavoriteUserAddDeleteViewModel::class.java)){
-            return FavoriteUserAddDeleteViewModel(mApplication) as T
+        return when {
+            modelClass.isAssignableFrom(MainViewModel::class.java) -> {
+                MainViewModel(pref) as T
+            }
+            modelClass.isAssignableFrom(FavoriteUserViewModel::class.java) -> {
+                FavoriteUserViewModel(mApplication) as T
+            }
+            modelClass.isAssignableFrom(FavoriteUserAddDeleteViewModel::class.java) -> {
+                FavoriteUserAddDeleteViewModel(mApplication) as T
+            }
+            else -> throw IllegalArgumentException("Unknown ViewModel Class: "+modelClass.name)
         }
-        throw IllegalArgumentException("Unknown ViewModel Class: "+modelClass.name)
     }
 
 }

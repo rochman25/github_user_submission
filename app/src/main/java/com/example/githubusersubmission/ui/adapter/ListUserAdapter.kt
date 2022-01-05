@@ -25,17 +25,20 @@ class ListUserAdapter(private val listUser: List<GithubUser>) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val (dataUsername, dataName, dataAvatar) = listUser[position]
-        holder.binding.tvItemName.text = dataName
-        holder.binding.tvItemFollower.text = dataUsername
-        Glide.with(holder.itemView.context)
+        with(holder.binding) {
+            tvItemName.text = dataName
+            tvItemFollower.text = dataUsername
+            Glide.with(holder.itemView.context)
                 .load(dataAvatar)
                 .circleCrop()
                 .placeholder(R.drawable.ic_baseline_account_circle_24)
                 .error(ColorDrawable(Color.RED))
-                .into(holder.binding.imgItemPhoto)
-        holder.itemView.setOnClickListener{
-            onItemClickCallback.onItemClicked(listUser[holder.adapterPosition])
+                .into(imgItemPhoto)
+            holder.itemView.setOnClickListener{
+                onItemClickCallback.onItemClicked(listUser[holder.adapterPosition])
+            }
         }
+
     }
 
     override fun getItemCount(): Int = listUser.size
